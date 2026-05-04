@@ -1,25 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analítica para Negócios | Case California Housing</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-    <!-- Prism.js -->
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-
-    <!-- PyScript -->
+    
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
-
 <body>
-
     <header>
         <div class="container">
             <h1>Analítica para Negócios</h1>
@@ -28,113 +23,85 @@
     </header>
 
     <main class="container">
-        <!-- Diagnóstico -->
         <section id="diagnostico">
             <h2>01. Diagnóstico Estratégico</h2>
             <div class="grid-5vs">
-                <div class="card">
-                    <h3>Volume</h3>
-                    <p>Milhares de registros censitários.</p>
-                </div>
-                <div class="card">
-                    <h3>Velocidade</h3>
-                    <p>Análise ágil para decisões.</p>
-                </div>
-                <div class="card">
-                    <h3>Variedade</h3>
-                    <p>Dados estruturados e textos.</p>
-                </div>
-                <div class="card">
-                    <h3>Veracidade</h3>
-                    <p>Tratamento e limpeza de dados.</p>
-                </div>
-                <div class="card">
-                    <h3>Valor</h3>
-                    <p>Inteligência aplicada ao negócio.</p>
-                </div>
+                <div class="card"><h3>Volume</h3><p>20.640 registros censitários.</p></div>
+                <div class="card"><h3>Velocidade</h3><p>Processamento em tempo real via Python.</p></div>
+                <div class="card"><h3>Variedade</h3><p>Dados numéricos e geográficos.</p></div>
+                <div class="card"><h3>Veracidade</h3><p>Limpeza de dados via Sklearn.</p></div>
+                <div class="card"><h3>Valor</h3><p>Predição de ativos imobiliários.</p></div>
             </div>
         </section>
 
-        <!-- Ciência de Dados -->
         <section id="modelagem">
             <h2>02. Modelagem e Ciência de Dados</h2>
             <div class="content-box">
-                <p>Aplicação de técnicas avançadas para extração de padrões e previsões [cite: 2, 5].</p>
+                <p>Implementação de modelos para extração de padrões e previsões imobiliárias.</p>
                 <ul>
-                    <li><strong>PCA:</strong> Redução de dimensionalidade.</li>
-                    <li><strong>K-Means:</strong> Clusterização de bairros socioeconômicos.</li>
-                    <li><strong>Regressão Linear:</strong> Previsão de preços com foco no R².</li>
+                    <li><strong>PCA:</strong> Redução de 8 para 3 componentes principais preservando a variância.</li>
+                    <li><strong>K-Means:</strong> Segmentação em clusters baseada em latitude/longitude e renda.</li>
+                    <li><strong>Regressão:</strong> Estimativa de preço com validação cruzada.</li>
                 </ul>
             </div>
         </section>
 
-        <!-- Insights -->
         <section id="insights">
             <h2>03. Insights de Negócio</h2>
             <div class="metrics">
                 <div class="metric-item">
-                    <h4>Conversão E-commerce</h4>
+                    <h4>Taxa de Conversão</h4>
                     <span class="value">10.0%</span>
                 </div>
                 <div class="metric-item">
-                    <h4>Sentimento do Cliente</h4>
+                    <h4>Sentimento Geral</h4>
                     <span class="value">Positivo</span>
                 </div>
             </div>
         </section>
 
-        <!-- Visualização -->
         <section id="resultados">
             <h2>04. Análise Visual de Dados</h2>
             <div class="grafico-container">
                 <img src="img/matriz_correlacao.png" alt="Matriz de Correlação" class="responsive-img">
-                <p>A correlação indica como variáveis como renda influenciam o preço médio [cite: 2, 5].</p>
+                <p>A matriz revela que a 'Renda Média' é o preditor mais forte para o valor dos imóveis.</p>
             </div>
         </section>
 
-        <!-- Código Fonte -->
         <section id="codigo">
-            <h2>05. Implementação Técnica (Python)</h2>
-            <pre><code class="language-python">import pandas as pd
-from sklearn.datasets import fetch_california_housing
+            <h2>05. Implementação Técnica</h2>
+            <pre><code class="language-python">from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+from sklearn.linear_model import LinearRegression
 
-# Carregamento e análise inicial
-data = fetch_california_housing()
-df = pd.DataFrame(data.data, columns=data.feature_names)
-print(df.head())</code></pre>
+# Execução do modelo de Regressão
+model = LinearRegression()
+model.fit(X_train, y_train)
+r2_score = model.score(X_test, y_test)
+print(f"Precisão do Modelo (R²): {r2_score:.2f}")</code></pre>
         </section>
 
-        <!-- PyScript -->
         <section id="execucao">
             <h2>06. Status do Ambiente</h2>
             <div class="content-box">
-                <!-- O id="status-python" é onde a mensagem vai aparecer -->
-                <div id="status-python" style="color: var(--primary); font-weight: 600;">
-                    Iniciando interpretador Python...
-                </div>
-
+                <div id="status-python">Carregando interpretador...</div>
                 <script type="py">
-            from datetime import datetime
-            from pyscript import display
-            agora = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
-            display(f"Ambiente Python ativo. Última verificação: {agora}", target="status-python", append=False)
-        </script>
+                    from datetime import datetime
+                    from pyscript import display
+                    agora = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+                    display(f"Ambiente Python 3.11 Ativo. Verificação em: {agora}", target="status-python", append=False)
+                </script>
             </div>
         </section>
 
-        <!-- Ética -->
         <section id="etica">
             <h2>07. Ética e Governança</h2>
-            <p>Análise conduzida sob os pilares da <strong>LGPD</strong>, garantindo anonimização e mitigação de vieses.
-            </p>
+            <p>Este projeto segue as diretrizes da <strong>LGPD</strong>, utilizando dados públicos anonimizados para evitar vieses algorítmicos.</p>
         </section>
-
     </main>
 
     <footer>
-        <p>Desenvolvido pela Equipe 37</p>
+        <p>Desenvolvido pela Equipe 37 | Unifor 2026</p>
     </footer>
-
 </body>
-
 </html>
