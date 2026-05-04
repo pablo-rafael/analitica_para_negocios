@@ -108,16 +108,17 @@ print(df.head())</code></pre>
         <section id="execucao">
             <h2>06. Status do Ambiente</h2>
             <div class="content-box">
-                <div id="output" style="color: var(--primary); font-weight: 600;">
-                    Aguardando inicialização do Python...
+                <!-- O id="status-python" é onde a mensagem vai aparecer -->
+                <div id="status-python" style="color: var(--primary); font-weight: 600;">
+                    Iniciando interpretador Python...
                 </div>
+
                 <script type="py">
-                    from datetime import datetime
-                    import pydoc
-                    from pyscript import display
-                    agora = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
-                    display(f"Ambiente Python ativo. Última verificação: {agora}", target="output", append=False)
-                </script>
+            from datetime import datetime
+            from pyscript import display
+            agora = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+            display(f"Ambiente Python ativo. Última verificação: {agora}", target="status-python", append=False)
+        </script>
             </div>
         </section>
 
