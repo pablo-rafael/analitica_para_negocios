@@ -44,10 +44,11 @@ df['MedHouseVal'] = data.target
 # Estatísticas Descritivas
 print(df.describe())
 
-# Matriz de Correlação [cite: 2, 5]
+# Matriz de Correlação
 plt.figure(figsize=(10, 8))
 sns.heatmap(df.corr(), annot=True, cmap='coolwarm', fmt=".2f")
 plt.title("Matriz de Correlação - California Housing")
+# Garanta que a pasta 'img' exista no seu repositório
 plt.savefig('img/matriz_correlacao.png', bbox_inches='tight')
 plt.show()
 
@@ -55,21 +56,21 @@ plt.show()
 
 print("\n--- Modelagem (PCA, K-means, Regressão) ---")
 
-# Normalização (Essencial para PCA e K-means)[cite: 2, 5]
+# Normalização (Essencial para PCA e K-means)
 scaler = StandardScaler()
 df_scaled = scaler.fit_transform(df.drop('MedHouseVal', axis=1))
 
-# 1. PCA (Redução de Dimensionalidade)[cite: 2, 5]
+# 1. PCA (Redução de Dimensionalidade)
 pca = PCA(n_components=2)
 df_pca = pca.fit_transform(df_scaled)
 print(f"Variância explicada pelo PCA: {pca.explained_variance_ratio_.sum():.2f}")
 
-# 2. K-means (Clusterização)[cite: 2, 5]
+# 2. K-means (Clusterização)
 kmeans = KMeans(n_clusters=3, random_state=42, n_init=10)
 df['Cluster'] = kmeans.fit_predict(df_scaled)
 print("Clusters gerados com sucesso.")
 
-# 3. Regressão Linear Múltipla [cite: 2, 5]
+# 3. Regressão Linear Múltipla 
 X = df.drop(['MedHouseVal', 'Cluster'], axis=1)
 y = df['MedHouseVal']
 model = LinearRegression()
@@ -83,10 +84,7 @@ print(f"Erro Quadrático Médio (MSE): {mean_squared_error(y, y_pred):.4f}")
 
 print("\n--- Análise de Fluxo ---")
 
-etapa_perda = df_fluxo.loc[df_fluxo['Perda_Percentual'].idxmax(), 'Etapa']
-print(f"A maior perda ocorre na etapa: {etapa_perda}")
-
-# Simulação de dados de funil
+# Primeiro definimos e calculamos os dados do fluxo
 fluxo = {
     'Etapa': ['Visitas', 'Carrinho', 'Checkout', 'Pagamento'],
     'Usuarios': [10000, 4500, 1200, 1000]
@@ -94,8 +92,13 @@ fluxo = {
 df_fluxo = pd.DataFrame(fluxo)
 df_fluxo['Perda_Percentual'] = df_fluxo['Usuarios'].pct_change().fillna(0) * -1
 
+# Agora calculamos as métricas baseadas no DataFrame criado acima
+etapa_perda = df_fluxo.loc[df_fluxo['Perda_Percentual'].idxmax(), 'Etapa']
 taxa_conversão = (df_fluxo.iloc[-1]['Usuarios'] / df_fluxo.iloc[0]['Usuarios']) * 100
+
+# Por fim, as impressões
 print(df_fluxo)
+print(f"A maior perda ocorre na etapa: {etapa_perda}")
 print(f"Taxa de Conversão Final: {taxa_conversão}%")
 
 # MINERAÇÃO DE TEXTO
