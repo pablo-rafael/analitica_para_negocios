@@ -64,8 +64,9 @@ O tratamento das coordenadas espaciais foi conduzido sob os rigores da **Lei Ger
 ```
 bash
    git clone [https://github.com/pablo-rafael/analitica_para_negocios.git](https://github.com/pablo-rafael/analitica_para_negocios.git)
+```
 Navegue até a pasta do projeto:
-
+```
 Bash
    cd analitica_para_negocios
 ```
